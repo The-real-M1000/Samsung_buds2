@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página con GIFs</title>
+  <style>
+    /* Estilos opcionales para el diseño */
+    body, html {
+      margin: 0;
+      padding: 0;
+      position: relative; /* Asegura que los elementos absolutos se posicionen correctamente */
+      background-color: black;
+    }
+    .gif-container {
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+      position: relative; /* Asegura que los elementos absolutos se posicionen correctamente */
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    .overlay-button {
+      position: absolute;
+      top: 70%; /* Ajusta la posición vertical */
+      left: 32%; /* Ajusta la posición horizontal */
+      width: 150px; /* Ancho del botón */
+      height: 70px; /* Alto del botón */
+      transform: translate(-50%, -50%); /* Centra el botón */
+      background-color: transparent; /* Hace que el botón sea transparente */
+      border: none; /* Elimina el borde */
+      cursor: pointer; /* Muestra un cursor de puntero */
+      z-index: 1; /* Asegura que el botón esté sobre el GIF */
+    }
+
+    .overlay-button2 {
+      position: absolute;
+      top: 70%; /* Ajusta la posición vertical */
+      left: 19%; /* Ajusta la posición horizontal */
+      width: 150px; /* Ancho del botón */
+      height: 70px; /* Alto del botón */
+      transform: translate(-50%, -50%); /* Centra el botón */
+      background-color: transparent; /* Hace que el botón sea transparente */
+      border: none; /* Elimina el borde */
+      cursor: pointer; /* Muestra un cursor de puntero */
+      z-index: 1; /* Asegura que el botón esté sobre el GIF */
+    }
+  </style>
+</head>
+<body>
+  <div class="gif-container">
+    <img src="1.gif" alt="GIF 1" id="gif1">
+    <button class="overlay-button" onclick="mostrarTercerGIF()"></button>
+    <button class="overlay-button2" onclick="window.open('https://www.samsung.com/co/audio-sound/galaxy-buds/galaxy-buds2-pro-graphite-sm-r510nzaalta/', '_blank')"></button>
+  </div>
+  <div class="gif-container">
+    <img src="2.gif" alt="GIF 2" id="gif2">
+  </div>
+  <div class="gif-container">
+    <img src="3.gif" alt="GIF 3" id="gif3">
+  </div>
+
+  <!-- Script para la carga lenta de los GIFs -->
+  <script>
+    const gifs = document.querySelectorAll('.gif-container img');
+
+    gifs.forEach(gif => {
+      gif.addEventListener('ended', () => {
+        gif.currentTime = gif.duration - 0.1; // Establece el tiempo al penúltimo fotograma
+        gif.pause(); // Pausa el GIF
+      });
+    });
+
+    function mostrarTercerGIF() {
+      window.scrollTo({
+        top: document.querySelector('.gif-container:nth-child(3)').offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+</body>
+</html>
